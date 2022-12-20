@@ -1,20 +1,13 @@
 ﻿using Microsoft.UI.Xaml;
+using WinUIEx;
 
 namespace XamlBrewer.WinUI3.XamlBehaviors.Sample
 {
-    /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class Shell : Window
+    public sealed partial class Shell : WindowEx
     {
         public Shell()
         {
-            Title = "XAML Brewer WinUI 3 XAML Behaviors Sample";
-
             InitializeComponent();
-
-            var appWindow = this.GetAppWindow();
-            appWindow.SetIcon("Assets/Beer.ico");
 
             (Application.Current as App).EnsureSettings();
             ApplyTheme();

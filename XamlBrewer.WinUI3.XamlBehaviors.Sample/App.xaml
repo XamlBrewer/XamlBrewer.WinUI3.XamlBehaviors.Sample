@@ -8,13 +8,13 @@
                 <!-- Other merged dictionaries here -->
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
-            <Color x:Key="SystemAccentColor">HotPink</Color>
-            <Color x:Key="SystemAccentColorDark1">HotPink</Color>
-            <Color x:Key="SystemAccentColorDark2">HotPink</Color>
-            <Color x:Key="SystemAccentColorDark3">HotPink</Color>
-            <Color x:Key="SystemAccentColorLight1">HotPink</Color>
-            <Color x:Key="SystemAccentColorLight2">HotPink</Color>
-            <Color x:Key="SystemAccentColorLight3">HotPink</Color>
+            <Color x:Key="SystemAccentColorDark3">#644501</Color>
+            <Color x:Key="SystemAccentColorDark2">#966702</Color>
+            <Color x:Key="SystemAccentColorDark1">#c88a03</Color>
+            <Color x:Key="SystemAccentColor">#fbb117</Color>
+            <Color x:Key="SystemAccentColorLight1">#fccd68</Color>
+            <Color x:Key="SystemAccentColorLight2">#fdde9a</Color>
+            <Color x:Key="SystemAccentColorLight3">#feeecc</Color>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
