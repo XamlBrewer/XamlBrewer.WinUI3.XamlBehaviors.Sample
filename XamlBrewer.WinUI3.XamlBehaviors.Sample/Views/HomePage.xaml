@@ -1,0 +1,329 @@
+<Page x:Class="XamlBrewer.WinUI3.XamlBehaviors.Sample.Views.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:behaviors="using:CommunityToolkit.WinUI.UI.Behaviors"
+      xmlns:sample="using:Microsoft.Toolkit.Uwp.SampleApp.Common"
+      xmlns:brewhaviors="using:XamlBrewer.WinUI3.Behaviors"
+      mc:Ignorable="d"
+      Background="Transparent">
+
+    <GridView x:Name="GridView"
+              SelectionMode="None"
+              VerticalAlignment="Stretch"
+              Margin="0">
+        <GridView.ItemsPanel>
+            <ItemsPanelTemplate>
+                <VariableSizedWrapGrid ItemHeight="360"
+                                       ItemWidth="420"
+                                       Orientation="Horizontal" />
+            </ItemsPanelTemplate>
+        </GridView.ItemsPanel>
+
+        <!-- AutoFocus and AutoSelect -->
+        <GridViewItem CornerRadius="4"
+                      Padding="0"
+                      Margin="0 0 20 20">
+            <GridViewItem.Transitions>
+                <TransitionCollection>
+                    <RepositionThemeTransition />
+                </TransitionCollection>
+            </GridViewItem.Transitions>
+            <Grid Width="400"
+                  Height="340"
+                  Margin="0"
+                  CornerRadius="4"
+                  RowDefinitions="auto, *">
+                <Border Margin="0"
+                        BorderThickness="0"
+                        Background="{ThemeResource SystemAccentColor}"
+                        Opacity=".2"
+                        Grid.RowSpan="10" />
+                <Border Margin="0"
+                        BorderThickness="0"
+                        Background="{ThemeResource SystemAccentColor}"
+                        Opacity=".5" />
+
+                <TextBlock Text="Focus and Select"
+                           Padding="0"
+                           HorizontalAlignment="Stretch"
+                           FontSize="16"
+                           Margin="10 5" />
+
+                <StackPanel HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Grid.Row="1">
+                    <TextBox Text="My content is not selected when loaded"
+                             Width="300"
+                             Margin="8" />
+                    <TextBox x:Name="dinges"
+                             Text="My content is selected when loaded"
+                             Width="300">
+                        <interactivity:Interaction.Behaviors>
+                            <behaviors:AutoFocusBehavior />
+                            <behaviors:AutoSelectBehavior />
+                        </interactivity:Interaction.Behaviors>
+                    </TextBox>
+                </StackPanel>
+            </Grid>
+        </GridViewItem>
+
+        <!-- Viewport -->
+        <GridViewItem CornerRadius="4"
+                      Padding="0"
+                      Margin="0 0 20 20">
+            <GridViewItem.Transitions>
+                <TransitionCollection>
+                    <RepositionThemeTransition />
+                </TransitionCollection>
+            </GridViewItem.Transitions>
+            <Grid Width="400"
+                  Height="340"
+                  Margin="0"
+                  CornerRadius="4"
+                  RowDefinitions="auto, *">
+                <Border Margin="0"
+                        BorderThickness="0"
+                        Background="{ThemeResource SystemAccentColor}"
+                        Opacity=".2"
+                        Grid.RowSpan="10" />
+                <Border Margin="0"
+                        BorderThickness="0"
+                        Background="{ThemeResource SystemAccentColor}"
+                        Opacity=".5" />
+
+                <TextBlock Text="Viewport"
+                           Padding="0"
+                           HorizontalAlignment="Stretch"
+                           FontSize="16"
+                           Margin="10 5" />
+
+                <ScrollViewer Grid.Row="1">
+                    <Grid Height="3000">
+                        <Border Width="100"
+                                Height="100"
+                                Background="{ThemeResource SystemAccentColor}">
+                            <interactivity:Interaction.Behaviors>
+                                <behaviors:ViewportBehavior x:Name="ViewportBehavior"
+                                                            IsAlwaysOn="True"
+                                                            EnteringViewport="Element_EnteringViewport"
+                                                            EnteredViewport="Element_EnteredViewport"
+                                                            ExitingViewport="Element_ExitingViewport"
+                                                            ExitedViewport="Element_ExitedViewport" />
+                            </interactivity:Interaction.Behaviors>
+                        </Border>
+                    </Grid>
+                </ScrollViewer>
+                <TextBlock x:Name="Status"
+                           Text="(Scroll down)"
+                           Grid.Row="1"
+                           Margin="4"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Center" />
+            </Grid>
+        </GridViewItem>
+
+        <!-- Something Header -->
+        <GridViewItem CornerRadius="4"
+                      Padding="0"
+                      Margin="0 0 20 20">
+            <GridViewItem.Transitions>
+                <TransitionCollection>
+                    <RepositionThemeTransition />
+                </TransitionCollection>
+            </GridViewItem.Transitions>
+            <Grid Width="400"
+                  Height="340"
+                  Margin="0"
+                  CornerRadius="4"
+                  RowDefinitions="auto, *">
+                <Border Margin="0"
+                        BorderThickness="0"
+                        Background="{ThemeResource SystemAccentColor}"
+                        Opacity=".2"
+                        Grid.RowSpan="10" />
+                <Border Margin="0"
+                        BorderThickness="0"
+                        Background="{ThemeResource SystemAccentColor}"
+                        Opacity=".5" />
+
+                <TextBlock Text="Fade Header"
+                           Padding="0"
+                           HorizontalAlignment="Stretch"
+                           FontSize="16"
+                           Margin="10 5" />
+
+                <Grid Grid.Row="1">
+                    <ListView x:Name="MyListView">
+                        <interactivity:Interaction.Behaviors>
+                            <behaviors:FadeHeaderBehavior />
+                            <!--<behaviors:StickyHeaderBehavior />-->
+                        </interactivity:Interaction.Behaviors>
+                        <ListView.Header>
+                            <Grid x:Name="MyHeaderGrid"
+                                  MinHeight="50"
+                                  Background="{ThemeResource SystemAccentColor}">
+                                <StackPanel VerticalAlignment="Center"
+                                            HorizontalAlignment="Center">
+                                    <TextBlock Text="Header"
+                                               TextAlignment="Center"
+                                               FontWeight="Bold"
+                                               FontSize="48"
+                                               Foreground="White"
+                                               Margin="6" />
+                                    <TextBlock Text="Starts with 100% opacity, fades to 0% as you scroll up."
+                                               Foreground="White"
+                                               VerticalAlignment="Center"
+                                               TextAlignment="Center"
+                                               Margin="6" />
+                                </StackPanel>
+                            </Grid>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid MinHeight="100"
+                                      Background="Silver"
+                                      Opacity="0.9">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image x:Name="ToolkitLogo"
+                                           Source="ms-appx:///Assets/ToolkitLogo.png"
+                                           Height="100"
+                                           Width="100"
+                                           Grid.Column="0"
+                                           Margin="0,0,24,0" />
+                                    <TextBlock Text="{Binding}"
+                                               Grid.Column="1"
+                                               TextTrimming="CharacterEllipsis"
+                                               VerticalAlignment="Center" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment"
+                                        Value="Stretch" />
+                                <Setter Property="Padding"
+                                        Value="12,12,24,12" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.Items>
+                            <x:String>Item 1</x:String>
+                            <x:String>Item 2</x:String>
+                            <x:String>Item 3</x:String>
+                            <x:String>Item 4</x:String>
+                            <x:String>Item 5</x:String>
+                        </ListView.Items>
+                    </ListView>
+                </Grid>
+
+
+            </Grid>
+        </GridViewItem>
+
+        <!-- Hyperlink -->
+        <GridViewItem CornerRadius="4"
+                      Padding="0"
+                      Margin="0 0 20 20">
+            <GridViewItem.Transitions>
+                <TransitionCollection>
+                    <RepositionThemeTransition />
+                </TransitionCollection>
+            </GridViewItem.Transitions>
+            <Grid Width="400"
+                  Height="340"
+                  Margin="0"
+                  CornerRadius="4"
+                  RowDefinitions="auto, *">
+                <Border Margin="0"
+                        BorderThickness="0"
+                        Background="{ThemeResource SystemAccentColor}"
+                        Opacity=".2"
+                        Grid.RowSpan="10" />
+                <Border Margin="0"
+                        BorderThickness="0"
+                        Background="{ThemeResource SystemAccentColor}"
+                        Opacity=".5" />
+
+                <TextBlock Text="Hyperlink"
+                           Padding="0"
+                           HorizontalAlignment="Stretch"
+                           FontSize="16"
+                           Margin="10 5" />
+
+                <StackPanel HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Grid.Row="1">
+                    <TextBlock x:Name="url"
+                               TextWrapping="Wrap">
+                        <interactivity:Interaction.Behaviors>
+                            <sample:TextBlockHyperlinkBehavior />
+                        </interactivity:Interaction.Behaviors>
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+        </GridViewItem>
+
+        <!-- User Stopped Typing -->
+        <GridViewItem CornerRadius="4"
+                      Padding="0"
+                      Margin="0 0 20 20">
+            <GridViewItem.Transitions>
+                <TransitionCollection>
+                    <RepositionThemeTransition />
+                </TransitionCollection>
+            </GridViewItem.Transitions>
+            <Grid Width="400"
+                  Height="340"
+                  Margin="0"
+                  CornerRadius="4"
+                  RowDefinitions="auto, *">
+                <Border Margin="0"
+                        BorderThickness="0"
+                        Background="{ThemeResource SystemAccentColor}"
+                        Opacity=".2"
+                        Grid.RowSpan="10" />
+                <Border Margin="0"
+                        BorderThickness="0"
+                        Background="{ThemeResource SystemAccentColor}"
+                        Opacity=".5" />
+
+                <TextBlock Text="User Stopped Typing"
+                           Padding="0"
+                           HorizontalAlignment="Stretch"
+                           FontSize="16"
+                           Margin="10 5" />
+
+                <StackPanel HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Grid.Row="1">
+                    <AutoSuggestBox x:Name="ManualSuggestBox"
+                                    Header="Manual"
+                                    PlaceholderText="Search"
+                                    QueryIcon="Find"
+                                    Width="300"
+                                    TextChanged="AutoSuggestBox_TextChanged"
+                                    QuerySubmitted="AutoSuggestBox_QuerySubmitted"
+                                    Margin="8" />
+                    <AutoSuggestBox Header="Real"
+                                    PlaceholderText="Search"
+                                    QueryIcon="Find"
+                                    Width="300"
+                                    QuerySubmitted="AutoSuggestBox_QuerySubmitted">
+                        <interactivity:Interaction.Behaviors>
+                            <brewhaviors:UserStoppedTypingBehavior UserStoppedTyping="AutoSuggestBox_UserStoppedTyping"
+                                                                   DelayInMilliseconds="1500"
+                                                                   MinimumCharacters="2" />
+                        </interactivity:Interaction.Behaviors>
+                    </AutoSuggestBox>
+                </StackPanel>
+            </Grid>
+        </GridViewItem>
+
+    </GridView>
+
+</Page>
