@@ -37,20 +37,22 @@
                   CornerRadius="4"
                   RowDefinitions="auto, *">
                 <Border Margin="0"
-                        BorderThickness="0"
-                        Background="{ThemeResource SystemAccentColor}"
-                        Opacity=".2"
+                        Background="Transparent"
+                        BorderThickness="2"
+                        BorderBrush="Silver"
+                        Opacity=".1"
                         Grid.RowSpan="10" />
                 <Border Margin="0"
                         BorderThickness="0"
                         Background="{ThemeResource SystemAccentColor}"
-                        Opacity=".5" />
+                        Opacity=".1" />
 
                 <TextBlock Text="Focus and Select"
                            Padding="0"
+                           FontWeight="SemiBold"
                            HorizontalAlignment="Stretch"
                            FontSize="16"
-                           Margin="10 5" />
+                           Margin="10" />
 
                 <StackPanel HorizontalAlignment="Center"
                             VerticalAlignment="Center"
@@ -85,20 +87,22 @@
                   CornerRadius="4"
                   RowDefinitions="auto, *">
                 <Border Margin="0"
-                        BorderThickness="0"
-                        Background="{ThemeResource SystemAccentColor}"
-                        Opacity=".2"
+                        Background="Transparent"
+                        BorderThickness="2"
+                        BorderBrush="Silver"
+                        Opacity=".1"
                         Grid.RowSpan="10" />
                 <Border Margin="0"
                         BorderThickness="0"
                         Background="{ThemeResource SystemAccentColor}"
-                        Opacity=".5" />
+                        Opacity=".1" />
 
                 <TextBlock Text="Viewport"
+                           FontWeight="SemiBold"
                            Padding="0"
                            HorizontalAlignment="Stretch"
                            FontSize="16"
-                           Margin="10 5" />
+                           Margin="10" />
 
                 <ScrollViewer Grid.Row="1">
                     <Grid Height="3000">
@@ -113,6 +117,8 @@
                                                             ExitingViewport="Element_ExitingViewport"
                                                             ExitedViewport="Element_ExitedViewport" />
                             </interactivity:Interaction.Behaviors>
+                            <FontIcon Glyph="&#xE899;"
+                                      FontSize="40" />
                         </Border>
                     </Grid>
                 </ScrollViewer>
@@ -140,23 +146,25 @@
                   CornerRadius="4"
                   RowDefinitions="auto, *">
                 <Border Margin="0"
-                        BorderThickness="0"
-                        Background="{ThemeResource SystemAccentColor}"
-                        Opacity=".2"
+                        Background="Transparent"
+                        BorderThickness="2"
+                        BorderBrush="Silver"
+                        Opacity=".1"
                         Grid.RowSpan="10" />
                 <Border Margin="0"
                         BorderThickness="0"
                         Background="{ThemeResource SystemAccentColor}"
-                        Opacity=".5" />
+                        Opacity=".1" />
 
                 <TextBlock Text="Fade Header"
+                           FontWeight="SemiBold"
                            Padding="0"
                            HorizontalAlignment="Stretch"
                            FontSize="16"
-                           Margin="10 5" />
+                           Margin="10" />
 
                 <Grid Grid.Row="1">
-                    <ListView x:Name="MyListView">
+                    <ListView>
                         <interactivity:Interaction.Behaviors>
                             <behaviors:FadeHeaderBehavior />
                             <!--<behaviors:StickyHeaderBehavior />-->
@@ -173,7 +181,7 @@
                                                FontSize="48"
                                                Foreground="White"
                                                Margin="6" />
-                                    <TextBlock Text="Starts with 100% opacity, fades to 0% as you scroll up."
+                                    <TextBlock Text="Opacity fades from 100% to 0% as you scroll up."
                                                Foreground="White"
                                                VerticalAlignment="Center"
                                                TextAlignment="Center"
@@ -183,24 +191,15 @@
                         </ListView.Header>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Grid MinHeight="100"
-                                      Background="Silver"
-                                      Opacity="0.9">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Image x:Name="ToolkitLogo"
-                                           Source="ms-appx:///Assets/ToolkitLogo.png"
-                                           Height="100"
-                                           Width="100"
-                                           Grid.Column="0"
-                                           Margin="0,0,24,0" />
+                                <Border MinHeight="100">
+                                    <Border.Background>
+                                        <SolidColorBrush Color="Silver"
+                                                         Opacity=".1" />
+                                    </Border.Background>
                                     <TextBlock Text="{Binding}"
-                                               Grid.Column="1"
-                                               TextTrimming="CharacterEllipsis"
-                                               VerticalAlignment="Center" />
-                                </Grid>
+                                               VerticalAlignment="Center"
+                                               Margin="12" />
+                                </Border>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                         <ListView.ItemContainerStyle>
@@ -208,7 +207,7 @@
                                 <Setter Property="HorizontalContentAlignment"
                                         Value="Stretch" />
                                 <Setter Property="Padding"
-                                        Value="12,12,24,12" />
+                                        Value="4" />
                             </Style>
                         </ListView.ItemContainerStyle>
                         <ListView.Items>
@@ -220,8 +219,6 @@
                         </ListView.Items>
                     </ListView>
                 </Grid>
-
-
             </Grid>
         </GridViewItem>
 
@@ -240,26 +237,30 @@
                   CornerRadius="4"
                   RowDefinitions="auto, *">
                 <Border Margin="0"
-                        BorderThickness="0"
-                        Background="{ThemeResource SystemAccentColor}"
-                        Opacity=".2"
+                        Background="Transparent"
+                        BorderThickness="2"
+                        BorderBrush="Silver"
+                        Opacity=".1"
                         Grid.RowSpan="10" />
                 <Border Margin="0"
                         BorderThickness="0"
                         Background="{ThemeResource SystemAccentColor}"
-                        Opacity=".5" />
+                        Opacity=".1" />
 
                 <TextBlock Text="Hyperlink"
+                           FontWeight="SemiBold"
                            Padding="0"
                            HorizontalAlignment="Stretch"
                            FontSize="16"
-                           Margin="10 5" />
+                           Margin="10" />
 
                 <StackPanel HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Grid.Row="1">
                     <TextBlock x:Name="url"
-                               TextWrapping="Wrap">
+                               TextWrapping="WrapWholeWords"
+                               FontSize="16"
+                               Margin="10">
                         <interactivity:Interaction.Behaviors>
                             <sample:TextBlockHyperlinkBehavior />
                         </interactivity:Interaction.Behaviors>
@@ -283,20 +284,22 @@
                   CornerRadius="4"
                   RowDefinitions="auto, *">
                 <Border Margin="0"
-                        BorderThickness="0"
-                        Background="{ThemeResource SystemAccentColor}"
-                        Opacity=".2"
+                        Background="Transparent"
+                        BorderThickness="2"
+                        BorderBrush="Silver"
+                        Opacity=".1"
                         Grid.RowSpan="10" />
                 <Border Margin="0"
                         BorderThickness="0"
                         Background="{ThemeResource SystemAccentColor}"
-                        Opacity=".5" />
+                        Opacity=".1" />
 
                 <TextBlock Text="User Stopped Typing"
+                           FontWeight="SemiBold"
                            Padding="0"
                            HorizontalAlignment="Stretch"
                            FontSize="16"
-                           Margin="10 5" />
+                           Margin="10" />
 
                 <StackPanel HorizontalAlignment="Center"
                             VerticalAlignment="Center"
@@ -308,8 +311,8 @@
                                     Width="300"
                                     TextChanged="AutoSuggestBox_TextChanged"
                                     QuerySubmitted="AutoSuggestBox_QuerySubmitted"
-                                    Margin="8" />
-                    <AutoSuggestBox Header="Real"
+                                    Margin="0 0 0 24" />
+                    <AutoSuggestBox Header="For real"
                                     PlaceholderText="Search"
                                     QueryIcon="Find"
                                     Width="300"
@@ -321,6 +324,18 @@
                         </interactivity:Interaction.Behaviors>
                     </AutoSuggestBox>
                 </StackPanel>
+
+                <InfoBadge Background="{ThemeResource SystemAccentColorComplementary}"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Top"
+                           Height="16"
+                           Width="16"
+                           Margin="6">
+                    <!-- No show (neither does SymbolIcon) -->
+                    <!--<InfoBadge.IconSource>
+                        <FontIconSource Glyph="&#xE734;" />
+                    </InfoBadge.IconSource>-->
+                </InfoBadge>
             </Grid>
         </GridViewItem>
 

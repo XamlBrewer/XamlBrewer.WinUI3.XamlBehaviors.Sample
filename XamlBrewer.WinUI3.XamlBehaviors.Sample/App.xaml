@@ -15,6 +15,7 @@
             <Color x:Key="SystemAccentColorLight1">#fccd68</Color>
             <Color x:Key="SystemAccentColorLight2">#fdde9a</Color>
             <Color x:Key="SystemAccentColorLight3">#feeecc</Color>
+            <Color x:Key="SystemAccentColorComplementary">#17b1fb</Color>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -1,22 +1,8 @@
-// Copyright (c) Microsoft Corporation and Contributors.
-// Licensed under the MIT License.
-
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Windows.Input;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using static System.Net.WebRequestMethods;
 
 namespace XamlBrewer.WinUI3.XamlBehaviors.Sample.Views
 {
@@ -27,9 +13,48 @@ namespace XamlBrewer.WinUI3.XamlBehaviors.Sample.Views
             InitializeComponent();
 
             Loaded += HomePage_Loaded;
+            Unloaded += HomePage_Unloaded;
         }
 
-        private List<string> Cats = new List<string>()
+        private void HomePage_Loaded(object sender, RoutedEventArgs e)
+        {
+            url.Text = "Please find the blog post at https://xamlbrewer.wordpress.com/ and the source code repo at https://github.com/XamlBrewer .";
+
+            timer.Tick += Timer_Tick;
+        }
+
+        private void HomePage_Unloaded(object sender, RoutedEventArgs e)
+        {
+            timer.Tick -= Timer_Tick;
+        }
+
+        #region Viewport
+        // bool IsInViewport => ViewportBehavior.IsInViewport;
+        // bool IsFullyInViewport => ViewportBehavior.IsFullyInViewport;
+
+        private void Element_EnteredViewport(object sender, EventArgs e)
+        {
+            Status.Text = "I'm in";
+        }
+
+        private void Element_EnteringViewport(object sender, EventArgs e)
+        {
+            Status.Text = "I'm entering";
+        }
+
+        private void Element_ExitedViewport(object sender, EventArgs e)
+        {
+            Status.Text = "I'm out";
+        }
+
+        private void Element_ExitingViewport(object sender, EventArgs e)
+        {
+            Status.Text = "I'm leaving";
+        }
+        #endregion
+
+        #region UserStoppedTyping
+        private readonly List<string> Cats = new()
         {
             "Abyssinian",
             "Aegean",
@@ -130,52 +155,18 @@ namespace XamlBrewer.WinUI3.XamlBehaviors.Sample.Views
             "York Chocolate"
         };
 
-        private DispatcherTimer timer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(3) };
-
-        private void HomePage_Loaded(object sender, RoutedEventArgs e)
-        {
-            // dinges.Focus(FocusState.Programmatic);
-            // dinges.SelectAll();
-
-            url.Text = "Find the blog posts at https://xamlbrewer.wordpress.com/ and the source code repos at https://github.com/XamlBrewer .";
-
-            timer.Tick += Timer_Tick;
-        }
+        private readonly DispatcherTimer timer = new() { Interval = TimeSpan.FromSeconds(3) };
 
         private void Timer_Tick(object sender, object e)
         {
-            //Propose(ManualSuggestBox);
-        }
-
-        // C#
-        private void Element_EnteredViewport(object sender, EventArgs e)
-        {
-            Status.Text = "I'm in";
-        }
-
-        private void Element_EnteringViewport(object sender, EventArgs e)
-        {
-            Status.Text = "I'm entering";
-        }
-
-        private void Element_ExitedViewport(object sender, EventArgs e)
-        {
-            Status.Text = "I'm out";
-        }
-
-        private void Element_ExitingViewport(object sender, EventArgs e)
-        {
-            Status.Text = "I'm leaving";
+            Propose(ManualSuggestBox);
         }
 
         private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
-            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            if ((args.Reason == AutoSuggestionBoxTextChangeReason.UserInput) && (sender.Text.Length >= 3))
             {
-                if (sender.Text.Length > 2)
-                {
-                    timer.Start();
-                }
+                timer.Start();
             }
             else
             {
@@ -187,9 +178,6 @@ namespace XamlBrewer.WinUI3.XamlBehaviors.Sample.Views
         {
             Propose(sender);
         }
-
-
-
 
         private void Propose(AutoSuggestBox sender)
         {
@@ -206,10 +194,12 @@ namespace XamlBrewer.WinUI3.XamlBehaviors.Sample.Views
                     suitableItems.Add(cat);
                 }
             }
+
             if (suitableItems.Count == 0)
             {
                 suitableItems.Add("No results found");
             }
+
             sender.ItemsSource = suitableItems;
         }
 
@@ -217,8 +207,6 @@ namespace XamlBrewer.WinUI3.XamlBehaviors.Sample.Views
         {
             Propose(sender);
         }
-
-        //bool IsInViewport => ViewportBehavior.IsInViewport;
-        //bool IsFullyInViewport => ViewportBehavior.IsFullyInViewport;
+        #endregion
     }
 }

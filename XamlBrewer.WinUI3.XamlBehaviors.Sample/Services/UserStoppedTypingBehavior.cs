@@ -9,7 +9,7 @@ namespace XamlBrewer.WinUI3.Behaviors
 
     public class UserStoppedTypingBehavior : BehaviorBase<AutoSuggestBox>
     {
-        private DispatcherTimer timer; 
+        private DispatcherTimer timer;
 
         public int DelayInMilliseconds { get; set; } = 3000;
 
@@ -25,14 +25,18 @@ namespace XamlBrewer.WinUI3.Behaviors
             base.OnAttached();
         }
 
+        protected override void OnDetaching()
+        {
+            AssociatedObject.TextChanged -= AssociatedObject_TextChanged;
+            timer.Tick -= Timer_Tick;
+            base.OnDetaching();
+        }
+
         private void AssociatedObject_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
-            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            if ((args.Reason == AutoSuggestionBoxTextChangeReason.UserInput) && (sender.Text.Length >= MinimumCharacters))
             {
-                if (sender.Text.Length >= MinimumCharacters)
-                {
-                    timer.Start();
-                }
+                timer.Start();
             }
             else
             {
