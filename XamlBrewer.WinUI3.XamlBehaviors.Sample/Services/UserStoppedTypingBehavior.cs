@@ -5,31 +5,43 @@ using System;
 
 namespace XamlBrewer.WinUI3.Behaviors
 {
-    public delegate void EventHandler<in TSender, in TArgs>(TSender sender, TArgs args);
+    // Use this if you prefer strongly typed events
+    // public delegate void EventHandler<in TSender, in TArgs>(TSender sender, TArgs args);
 
     public class UserStoppedTypingBehavior : BehaviorBase<AutoSuggestBox>
     {
         private DispatcherTimer timer;
 
-        public int DelayInMilliseconds { get; set; } = 3000;
+        /// <summary>
+        /// Gets or sets the waiting time threshold (in milliseconds).
+        /// </summary>
+        public int MinimumDelay { get; set; } = 3000;
 
+        /// <summary>
+        /// Gets or sets the search string threshold.
+        /// </summary>
         public int MinimumCharacters { get; set; } = 3;
 
-        public event EventHandler<AutoSuggestBox, EventArgs> UserStoppedTyping;
+        // Use this if you prefer strongly typed events
+        // public event EventHandler<AutoSuggestBox, EventArgs> UserStoppedTyping;
+
+        public event EventHandler UserStoppedTyping;
 
         protected override void OnAttached()
         {
-            AssociatedObject.TextChanged += AssociatedObject_TextChanged;
-            timer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(DelayInMilliseconds) };
-            timer.Tick += Timer_Tick;
             base.OnAttached();
+
+            AssociatedObject.TextChanged += AssociatedObject_TextChanged;
+            timer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(MinimumDelay) };
+            timer.Tick += Timer_Tick;
         }
 
         protected override void OnDetaching()
         {
+            base.OnDetaching();
+
             AssociatedObject.TextChanged -= AssociatedObject_TextChanged;
             timer.Tick -= Timer_Tick;
-            base.OnDetaching();
         }
 
         private void AssociatedObject_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)

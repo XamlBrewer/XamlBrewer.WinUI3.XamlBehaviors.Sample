@@ -12,7 +12,9 @@ using System.Text.RegularExpressions;
 
 namespace Microsoft.Toolkit.Uwp.SampleApp.Common
 {
+    // Source:
     // https://github.com/CommunityToolkit/WindowsCommunityToolkit/blob/main/Microsoft.Toolkit.Uwp.SampleApp/Common/TextBlockHyperlinkBehavior.cs
+    
     public class TextBlockHyperlinkBehavior : BehaviorBase<TextBlock>
     {
         //// From: http://urlregex.com/

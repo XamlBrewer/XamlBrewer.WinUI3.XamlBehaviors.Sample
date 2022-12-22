@@ -170,8 +170,7 @@
                             <!--<behaviors:StickyHeaderBehavior />-->
                         </interactivity:Interaction.Behaviors>
                         <ListView.Header>
-                            <Grid x:Name="MyHeaderGrid"
-                                  MinHeight="50"
+                            <Grid MinHeight="50"
                                   Background="{ThemeResource SystemAccentColor}">
                                 <StackPanel VerticalAlignment="Center"
                                             HorizontalAlignment="Center">
@@ -319,7 +318,7 @@
                                     QuerySubmitted="AutoSuggestBox_QuerySubmitted">
                         <interactivity:Interaction.Behaviors>
                             <brewhaviors:UserStoppedTypingBehavior UserStoppedTyping="AutoSuggestBox_UserStoppedTyping"
-                                                                   DelayInMilliseconds="1500"
+                                                                   MinimumDelay="1500"
                                                                    MinimumCharacters="2" />
                         </interactivity:Interaction.Behaviors>
                     </AutoSuggestBox>

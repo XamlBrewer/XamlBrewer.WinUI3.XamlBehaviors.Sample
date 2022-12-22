@@ -159,7 +159,8 @@ namespace XamlBrewer.WinUI3.XamlBehaviors.Sample.Views
 
         private void Timer_Tick(object sender, object e)
         {
-            Propose(ManualSuggestBox);
+            DisplaySuggestions(ManualSuggestBox);
+            timer.Stop();
         }
 
         private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
@@ -176,10 +177,15 @@ namespace XamlBrewer.WinUI3.XamlBehaviors.Sample.Views
 
         private void AutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
-            Propose(sender);
+            DisplaySuggestions(sender);
         }
 
-        private void Propose(AutoSuggestBox sender)
+        private void AutoSuggestBox_UserStoppedTyping(object sender, EventArgs e)
+        {
+            DisplaySuggestions(sender as AutoSuggestBox);
+        }
+
+        private void DisplaySuggestions(AutoSuggestBox sender)
         {
             var suitableItems = new List<string>();
             var splitText = sender.Text.ToLower().Split(" ");
@@ -201,11 +207,6 @@ namespace XamlBrewer.WinUI3.XamlBehaviors.Sample.Views
             }
 
             sender.ItemsSource = suitableItems;
-        }
-
-        private void AutoSuggestBox_UserStoppedTyping(AutoSuggestBox sender, EventArgs e)
-        {
-            Propose(sender);
         }
         #endregion
     }
