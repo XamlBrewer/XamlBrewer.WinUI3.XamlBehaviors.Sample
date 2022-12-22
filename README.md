@@ -11,3 +11,5 @@ This WinUI 3 Desktop app demonstrates XAML Behaviors:
   * autosuggestbox user stopped typing
 
 <a href="https://www.buymeacoffee.com/xamlbrewer" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+
+![Screenshot](Assets/XamlBehaviors.png?raw=true)
