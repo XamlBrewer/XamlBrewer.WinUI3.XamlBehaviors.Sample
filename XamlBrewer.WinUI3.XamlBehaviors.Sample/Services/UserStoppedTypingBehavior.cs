@@ -58,7 +58,7 @@ namespace XamlBrewer.WinUI3.Behaviors
 
         private void Timer_Tick(object sender, object e)
         {
-            UserStoppedTyping?.Invoke(AssociatedObject, null);
+            UserStoppedTyping?.Invoke(AssociatedObject, new EventArgs());
             timer.Stop();
         }
     }
