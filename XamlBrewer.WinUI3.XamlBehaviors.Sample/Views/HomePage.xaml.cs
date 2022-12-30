@@ -1,8 +1,10 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.Xaml.Interactivity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using XamlBrewer.WinUI3.Behaviors;
 
 namespace XamlBrewer.WinUI3.XamlBehaviors.Sample.Views
 {
@@ -21,6 +23,11 @@ namespace XamlBrewer.WinUI3.XamlBehaviors.Sample.Views
             url.Text = "Please find the blog post at https://xamlbrewer.wordpress.com/ and the source code repo at https://github.com/XamlBrewer .";
 
             timer.Tick += Timer_Tick;
+
+            var behaviors = Interaction.GetBehaviors(TheBox);
+            var userStoppedTyping = new UserStoppedTypingBehavior { MinimumDelay = 1500, MinimumCharacters = 2 };
+            userStoppedTyping.UserStoppedTyping += AutoSuggestBox_UserStoppedTyping;
+            behaviors.Add(userStoppedTyping);
         }
 
         private void HomePage_Unloaded(object sender, RoutedEventArgs e)

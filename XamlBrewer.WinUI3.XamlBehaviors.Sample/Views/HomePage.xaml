@@ -316,12 +316,20 @@
                                     PlaceholderText="Search"
                                     QueryIcon="Find"
                                     Width="300"
-                                    QuerySubmitted="AutoSuggestBox_QuerySubmitted">
+                                    QuerySubmitted="AutoSuggestBox_QuerySubmitted"
+                                    Margin="0 0 0 24">
                         <interactivity:Interaction.Behaviors>
                             <brewhaviors:UserStoppedTypingBehavior UserStoppedTyping="AutoSuggestBox_UserStoppedTyping"
                                                                    MinimumDelay="1500"
                                                                    MinimumCharacters="2" />
                         </interactivity:Interaction.Behaviors>
+                    </AutoSuggestBox>
+                    <AutoSuggestBox x:Name="TheBox"
+                                    Header="Programmatically"
+                                    PlaceholderText="Search"
+                                    QueryIcon="Find"
+                                    Width="300"
+                                    QuerySubmitted="AutoSuggestBox_QuerySubmitted">
                     </AutoSuggestBox>
                 </StackPanel>
 
