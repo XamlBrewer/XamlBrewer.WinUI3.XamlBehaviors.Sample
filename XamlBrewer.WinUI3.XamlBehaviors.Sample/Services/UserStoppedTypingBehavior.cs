@@ -1,6 +1,6 @@
-﻿using CommunityToolkit.WinUI.UI.Behaviors;
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.Xaml.Interactivity;
 using System;
 
 namespace XamlBrewer.WinUI3.Behaviors
@@ -8,7 +8,7 @@ namespace XamlBrewer.WinUI3.Behaviors
     // Use this if you prefer strongly typed events
     // public delegate void EventHandler<in TSender, in TArgs>(TSender sender, TArgs args);
 
-    public class UserStoppedTypingBehavior : BehaviorBase<AutoSuggestBox>
+    public class UserStoppedTypingBehavior : Behavior<AutoSuggestBox>
     {
         private DispatcherTimer timer;
 
