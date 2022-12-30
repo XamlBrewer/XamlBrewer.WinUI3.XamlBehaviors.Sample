@@ -166,11 +166,12 @@
                 <Grid Grid.Row="1">
                     <ListView>
                         <interactivity:Interaction.Behaviors>
-                            <behaviors:FadeHeaderBehavior />
+                            <behaviors:FadeHeaderBehavior HeaderElement="{Binding ElementName=TheGrid}" />
                             <!--<behaviors:StickyHeaderBehavior />-->
                         </interactivity:Interaction.Behaviors>
                         <ListView.Header>
-                            <Grid MinHeight="50"
+                            <Grid x:Name="TheGrid"
+                                  MinHeight="50"
                                   Background="{ThemeResource SystemAccentColor}">
                                 <StackPanel VerticalAlignment="Center"
                                             HorizontalAlignment="Center">
